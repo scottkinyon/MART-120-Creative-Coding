@@ -3,19 +3,45 @@
   <head>
     <title>Contact Me</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Below is the script I tried to write, but it doesn't do anything! It seems like it should focus on empty form elements and turn them red, but it doesn't work. Does the "required" attribute of the inputs override the checkData function? -->
+    <script>
+        function checkData()
+              {
+                  var firstname = document.getElementById("firstname").value;
+                  var lastname = document.getElementById("lastname").value;
+                  var email = document.getElementById("email").value;
+                  var agreement = document.getElementById("agreement").value;
+
+                  if(firstname == null){
+                    document.getElementById("firstname").focus();
+                    document.getElementById("firstname").style.backgroundColor = 'red';
+                  }
+                  if(lastname == null){
+                    document.getElementById("lastname").focus();
+                    document.getElementById("lastname").style.backgroundColor = 'red';
+                  }
+                  if(email == null){
+                    document.getElementById("email").focus();
+                    document.getElementById("email").style.backgroundColor = 'red';
+                  }
+                  if(agreement == null){
+                    document.getElementById("agreement").focus();
+                    document.getElementById("agreement").style.backgroundColor = 'red';
+                  }
+             }
+    </script>
   </head>
   <body>
     <h1>Contact Me</h1>
     <br />
-    <form action="contactpag.html" method="post">
-      First Name: <input type="text" id="firstname"><br />
-      Last Name: <input type="text" id="lastname"><br />
-      Email: <input type="email" id="email"><br />
+    <form action="contactpage.html" method="post">
+      First Name: <input type="text" id="firstname" required><br />
+      Last Name: <input type="text" id="lastname" required><br />
+      Email: <input type="email" id="email" required><br />
       Accept terms of agreement?<br />
-      <input type="radio" name="agreement" value="yes">Yes<br />
+      <input type="radio" id="agreement" name="agreement" value="yes" required>Yes<br />
       <input type="radio" name="agreement" value="no">No<br />
-      <button id="submit" type="submit">Submit</button>
+      <button id="submit" type="submit" onClick="checkData();">Submit</button>
     </form>
     <br />
     <h2><a href="./index.html">Return to Homepage</a></h2>
