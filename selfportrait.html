@@ -8,9 +8,34 @@
     <title>Self-Portrait by Scott Kinyon</title>
     <script src="./p5.js"></script>
     <script>
+      //right (viewer's left) eye variables
+      var odx = 118;
+      var ody = 100;
+      var odw = 12;
+      var odh = 7;
+      //left (viewer's right) eye variables
+      var osx = 148;
+      var osy = 100;
+      var osw = 12;
+      var osh = 7;
+      //mouth variables
+      var mx = 133;
+      var my = 128;
+      //text variables
+      var ts = 14;
+      var tsChange = -1;
+      //movement speed variables
+      var odMovement;
+      var osMovement;
+      var mxMovement;
+      var myMovement;
       function setup()
       {
         createCanvas(300,300);
+        odMovement = Math.floor(Math.random() * 10)+1;
+        osMovement = Math.floor(Math.random() * 10)+1;
+        mxMovement = Math.floor(Math.random() * 10)+1;
+        myMovement = Math.floor(Math.random() * 10)+1;
       }
 
       function draw()
@@ -21,6 +46,7 @@
 
         stroke(125,110,105);
 
+        //hair shapes below
         fill(81,68,43);
         triangle(80,85,90,120,100,75);
         fill(91,78,53);
@@ -38,6 +64,7 @@
         fill(71,58,33);
         triangle(165,60,175,110,185,75);
 
+        //beard shapes, first layer below
         fill(61,48,23);
         triangle(90,125,95,145,100,130);
         fill(56,43,18);
@@ -59,6 +86,7 @@
         fill(56,43,18);
         triangle(165,130,170,145,175,125);
 
+        //beard shapes, second layer below
         fill(61,48,23);
         triangle(160,136,165,151,170,131);
         fill(61,48,23);
@@ -76,11 +104,13 @@
         fill(58,45,20);
         triangle(95,125,100,145,105,130);
 
+        //mouth shapes below
         fill(254,213,196);
-        ellipse(133,128,22,7);
+        ellipse(mx,my,22,7);
         fill(205,190,185);
-        ellipse(134,128.5,16,1);
+        ellipse(mx+1,my+.5,16,1);
 
+        //moustache shapes below
         fill(61,48,23);
         triangle(105,130,115,135,131,120);
         fill(61,48,23);
@@ -90,29 +120,35 @@
         fill(63,50,25);
         triangle(133,121,139,127,146,124);
 
+        //right (viewer's left) eye shapes
         fill(225,215,215);
-        ellipse(118,100,12,7);
+        ellipse(odx,ody,12,7);
         fill(56,43,18);
-        ellipse(118,100,5,5);
+        ellipse(odx,ody,5,5);
         fill(235,235,235);
-        square(118,98,2,2);
+        square(odx,ody-2,2,2);
 
+        //left (viewer's right) eye shapes
         fill(225,215,215);
-        ellipse(148,100,12,7);
+        ellipse(osx,osy,12,7);
         fill(56,43,18);
-        ellipse(148,100,5,5);
+        ellipse(osx,osy,5,5);
         fill(235,235,235);
-        square(148,98,2,2);
+        square(osx,osy-2,2,2);
 
+        //right (viewer's left) eyebrow
         fill(58,45,20);
         triangle(107,93,122,90,124,92);
 
+        //left (viewer's right) eyebrow
         fill(58,45,20);
         triangle(142,92,144,90,159,93);
 
+        //nose shapes
         line(132,99,127,115);
         line(127,115,132,116);
 
+        //stubble left (viewer's right)
         point(155,125);
         point(157,123);
         point(160,126);
@@ -124,6 +160,7 @@
         point(163,121);
         point(168,120);
 
+        //stubble right (viewer's left)
         point(105,125);
         point(107,123);
         point(110,126);
@@ -135,15 +172,45 @@
         point(113,121);
         point(118,120);
 
-        textSize(18);
+        textSize(ts);
         text('Self-Portrait in p5.js',60,22);
-        textSize(14);
+        textSize(ts-4);
         text('or the Floating Head',70,40);
 
-        textSize(16);
+        textSize(ts-2);
         text('by Scott Kinyon',75,220);
-      }
 
+        if(ts == 14 || ts == 19)
+        {
+        tsChange *= -1;
+        }
+        ts += tsChange;
+
+        if(mx >= 296.5 || mx <= 3.5)
+        {
+        mxMovement *= -1;
+        }
+        mx += mxMovement;
+
+        if(my >= 289 || my <= 5.5)
+        {
+        myMovement *= -1;
+        }
+        my += myMovement;
+
+        if(osy >= 296.5 || osy <= 3.5)
+        {
+        osMovement *= -1;
+        }
+        osy += osMovement;
+
+        if(odx >= 294 || odx <= 6)
+        {
+        odMovement *= -1;
+        }
+        odx += odMovement;
+
+      }
     </script>
   </head>
   <body>
