@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="A game inspired by Spore created by Scott Kinyon using p5.js">
+    <meta name="author" content="Scott Kinyon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spore-like Game by Scott Kinyon</title>
+    <script src="./p5.js"></script>
+    <script>
+
+      var trix = 390;
+      var triy = 550;
+
+      var rect1x = 200;
+      var rect1y = 200;
+
+      var rect2x = 600;
+      var rect2y = 400;
+
+      var mousex = -30;
+      var mousey = -30;
+
+      function setup()
+      {
+      createCanvas(800,600);
+      }
+
+      function draw()
+      {
+
+      background(222,188,152);
+      fill(183,195,39);
+      triangle(trix,triy,trix+10,triy-15,trix+20, triy);
+      fill(53,37,32);
+      square(rect1x,rect1y,5);
+      fill(225,166,30);
+      square(rect2x,rect2y,25);
+      fill(148,73,42);
+      circle(mousex, mousey, 25);
+      fill(200,166,130);
+      square(360,0,80);
+
+      fill(53,37,32);
+      textSize(16);
+      text('Exit',385,40);
+
+      //movement controls for hero triangle
+      if (keyIsDown(83))
+      {
+        triy += 5;
+      }
+      else if (keyIsDown(87))
+      {
+        triy -= 5;
+      }
+
+      if (keyIsDown(68))
+      {
+        trix += 5;
+      }
+      else if (keyIsDown(65))
+      {
+        trix -= 5;
+      }
+
+      //movement for rectangles
+      if(rect1x <= 800)
+        {
+            rect1x+=15;
+        }
+        else
+        {
+           rect1x = 1;
+        }
+
+      if(rect1y <= 600)
+        {
+        rect1y+=15;
+        }
+        else
+        {
+        rect1y = 1;
+        }
+
+     if(rect2x >= 0)
+       {
+       rect2x -= trix/10;
+       }
+       else
+       {
+       rect2x = 800;
+       }
+
+     if(rect2y >= 600)
+       {
+       rect2y = 1;
+       }
+       else if(rect2y >= 220 && rect2y <= 380)
+       {
+       rect2y += triy/10;
+       }
+       else if(rect2y < 600)
+       {
+       rect2y += 9;
+       }
+
+     if(trix >= 360 && trix <= 440 && triy <= 80)
+       {
+       fill(53,37,32);
+       textSize(16);
+       text('You Win',385,290);
+       }
+    }
+
+     function mousePressed()
+     {
+         mousex = mouseX;
+         mousey = mouseY;
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
