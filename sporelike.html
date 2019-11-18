@@ -28,96 +28,128 @@
 
       function draw()
       {
-
       background(222,188,152);
-      fill(183,195,39);
-      triangle(trix,triy,trix+10,triy-15,trix+20, triy);
-      fill(53,37,32);
-      square(rect1x,rect1y,5);
-      fill(225,166,30);
-      square(rect2x,rect2y,25);
-      fill(148,73,42);
-      circle(mousex, mousey, 25);
-      fill(200,166,130);
-      square(360,0,80);
+      createHero();
+      moveHero();
+      mouseCircle();
+      createVillains();
+      moveVillain1();
+      moveVillain2();
+      createExit();
+      if(trix >= 360 && trix <= 440 && triy <= 80)
+        {
+          youWin();
+        }
+      }
 
-      fill(53,37,32);
-      textSize(16);
-      text('Exit',385,40);
+      function createHero()
+      {
+        fill(183,195,39);
+        triangle(trix,triy,trix+10,triy-15,trix+20, triy);
+      }
 
       //movement controls for hero triangle
-      if (keyIsDown(83))
+      function moveHero()
       {
-        triy += 5;
-      }
-      else if (keyIsDown(87))
-      {
-        triy -= 5;
+        if (keyIsDown(83))
+        {
+          triy += 5;
+        }
+        else if (keyIsDown(87))
+        {
+          triy -= 5;
+        }
+
+        if (keyIsDown(68))
+        {
+          trix += 5;
+        }
+        else if (keyIsDown(65))
+        {
+          trix -= 5;
+        }
       }
 
-      if (keyIsDown(68))
+      function mouseCircle()
+        {
+          fill(148,73,42);
+          circle(mousex, mousey, 25);
+        }
+
+      function mousePressed()
+        {
+           mousex = mouseX;
+           mousey = mouseY;
+        }
+
+      function createVillains()
       {
-        trix += 5;
-      }
-      else if (keyIsDown(65))
-      {
-        trix -= 5;
+        fill(53,37,32);
+        square(rect1x,rect1y,5);
+        fill(225,166,30);
+        square(rect2x,rect2y,25);
       }
 
       //movement for rectangles
-      if(rect1x <= 800)
-        {
+      function moveVillain1 ()
+      {
+        if(rect1x <= 800)
+          {
             rect1x+=15;
-        }
+          }
         else
-        {
-           rect1x = 1;
-        }
-
-      if(rect1y <= 600)
-        {
-        rect1y+=15;
-        }
+          {
+            rect1x = 1;
+          }
+        if(rect1y <= 600)
+          {
+            rect1y+=15;
+          }
         else
-        {
-        rect1y = 1;
-        }
-
-     if(rect2x >= 0)
-       {
-       rect2x -= trix/10;
-       }
-       else
-       {
-       rect2x = 800;
-       }
-
-     if(rect2y >= 600)
-       {
-       rect2y = 1;
-       }
-       else if(rect2y >= 220 && rect2y <= 380)
-       {
-       rect2y += triy/10;
-       }
-       else if(rect2y < 600)
-       {
-       rect2y += 9;
-       }
-
-     if(trix >= 360 && trix <= 440 && triy <= 80)
-       {
-       fill(53,37,32);
-       textSize(16);
-       text('You Win',385,290);
-       }
-    }
-
-     function mousePressed()
-     {
-         mousex = mouseX;
-         mousey = mouseY;
+          {
+            rect1y = 1;
+          }
       }
+
+      function moveVillain2 ()
+      {
+        if(rect2x >= 0)
+          {
+            rect2x -= trix/10;
+          }
+        else
+          {
+            rect2x = 800;
+          }
+        if(rect2y >= 600)
+          {
+            rect2y = 1;
+          }
+        else if(rect2y >= 220 && rect2y <= 380)
+          {
+            rect2y += triy/10;
+          }
+        else if(rect2y < 600)
+          {
+            rect2y += 9;
+          }
+        }
+
+      function createExit()
+        {
+          fill(200,166,130);
+          square(360,0,80);
+          fill(53,37,32);
+          textSize(16);
+          text('Exit',385,40);
+        }
+
+      function youWin()
+        {
+          fill(53,37,32);
+          textSize(16);
+          text('You Win',385,290);
+        }
     </script>
   </head>
   <body>
