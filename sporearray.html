@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="A game inspired by Spore created by Scott Kinyon using p5.js">
+    <meta name="author" content="Scott Kinyon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spore-like Game by Scott Kinyon</title>
+    <script src="./p5.js"></script>
+    <script>
+
+      var x = 50;
+      var y = 50;
+      var w = 25;
+
+      var trix = 390;
+      var triy = 550;
+
+      var rectXs = [];
+      var rectYs = [];
+      var rectWs = [];
+
+      var mousex = -30;
+      var mousey = -30;
+
+      function setup()
+      {
+      createCanvas(800,600);
+      for(var i = 0; i < 5; i++)
+        {
+            rectXs[i] = getRandomX(800);
+            rectYs[i] = getRandomY(600);
+            rectWs[i] = getRandomW(50);
+        }
+      }
+
+      function draw()
+      {
+      background(222,188,152);
+      createHero();
+      moveHero();
+      mouseCircle();
+      moveRects();
+      for(var i = 0; i < 5; i++)
+      {
+            fill(Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256));
+            square(x+(Math.floor(Math.random()*rectXs[i])), y+(Math.floor(Math.random()*rectYs[i])), rectWs[i]);
+      }
+      createExit();
+      if(trix >= 360 && trix <= 440 && triy <= 80)
+        {
+          youWin();
+        }
+      }
+
+      function createHero()
+      {
+        fill(183,195,39);
+        triangle(trix,triy,trix+10,triy-15,trix+20, triy);
+      }
+
+      //movement controls for hero triangle
+      function moveHero()
+      {
+        if (keyIsDown(83)) //s control
+        {
+          triy += 5;
+        }
+        else if (keyIsDown(87)) //w control
+        {
+          triy -= 5;
+        }
+
+        if (keyIsDown(68)) //d control
+        {
+          trix += 5;
+        }
+        else if (keyIsDown(65)) //a control
+        {
+          trix -= 5;
+        }
+      }
+
+      function mouseCircle()
+        {
+          fill(148,73,42);
+          circle(mousex, mousey, 25);
+        }
+
+      function mousePressed()
+        {
+           mousex = mouseX;
+           mousey = mouseY;
+        }
+
+      //movement for rectangles
+
+      function moveRects ()
+      {
+        if(x >= 0)
+          {
+            x -= trix/5;
+          }
+        else
+          {
+            x = 800;
+          }
+        if(y >= 600)
+          {
+            y = 1;
+          }
+        else if(y >= 220 && y <= 380)
+          {
+            y += triy/5;
+          }
+        else if(y < 600)
+          {
+            y += 9;
+          }
+        }
+
+      function createExit()
+        {
+          fill(200,166,130);
+          square(360,0,80);
+          fill(53,37,32);
+          textSize(16);
+          text('Exit',385,40);
+        }
+
+      function youWin()
+        {
+          fill(53,37,32);
+          textSize(16);
+          text('You Win',385,290);
+        }
+
+      function getRandomX(x)
+        {
+          return Math.floor(Math.random()*x) + 10;
+        }
+
+      function getRandomY(y)
+        {
+          return Math.floor(Math.random()*y) + 10;
+        }
+
+      function getRandomW(w)
+        {
+          return Math.floor(Math.random()*w) + 10;
+        }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
